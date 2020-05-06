@@ -5,3 +5,18 @@
 {"message":"Unauthorized request to path: /","level":"error"}
 {"message":"Unauthorized request to path: /","level":"error"}
 {"message":"Unauthorized request to path: /","level":"error"}
+{"message":"title is required","level":"error"}
+{"message":"title is required","level":"error"}
+{"message":"bookmark with e235db61-e1eb-4036-9824-ca8a6f4c8501 created","level":"info"}
+{"message":"bookmark with id 7abcf7ab-e4fb-4f5d-a5e9-4768c6acf172 created","level":"info"}
+{"message":"bookmark with id cc07b92d-23a4-48bc-a6f0-8b62d3cf735e created","level":"info"}
+{"message":"bookmark with id a3b431d7-8d1f-4872-8654-80bd9ef339a6 created","level":"info"}
+{"message":"bookmark with id d1b02bdf-a802-4f13-81d9-4aeb0b45ae1e created","level":"info"}
+{"message":"Invalid rating '1' supplied","level":"error"}
+{"message":"bookmark with id 14815d1e-c6af-4695-865c-61bd41283354 created","level":"info"}
+{"message":"bookmark with id e668920e-ef9f-40a8-a9ad-11f7ce458ddd created","level":"info"}
+{"message":"Invalid url 'myURL' supplied","level":"error"}
+{"message":"Invalid url 'myURL' supplied","level":"error"}
+{"message":"bookmark with id b02a93ca-3a67-42f1-91a2-d7d64b7e3766 created","level":"info"}
+{"message":"Bookmark with id cjozyzcil0000lxygs3gyg2mr deleted.","level":"info"}
+{"message":"Bookmark with id cjozyzcil0000lxygs3gyg2mr not found.","level":"error"}
