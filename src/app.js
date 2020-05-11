@@ -25,7 +25,9 @@ app.use(function validateBearerToken(req, res, next) {
 
     if (!authToken || authToken.split(' ')[1] !== apiToken) {
         logger.error(`Unauthorized request to path: ${req.path}`);
-        return res.status(401).json({ error: 'Unauthorized request' })
+        return res.status(401).json({ 
+            error: 'Unauthorized request',
+     })
     }
     next()
 })
@@ -48,3 +50,6 @@ app.use(function errorHandler(error, req, res, next) {
 })
 
 module.exports = app
+
+
+// API_TOKEN=$2a$10$qitra0cxt0KYlTicaBZCXOsl4x0NOtedyzteXMRXBg.t1a5S3NHq6
