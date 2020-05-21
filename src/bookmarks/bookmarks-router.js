@@ -100,6 +100,30 @@ bookmarksRouter
             })
             .catch(next)
     })
+    .patch(bodyParser, (req, res, next) => {
+        const { bookmark_id } = req.params
+        const { title, url, description, rating } = req.body
+        const bookmarkToUpdate = { title, url, description, rating }
+        if (Object.values(bookmarkToUpdate).filter(Boolean).length === 0) {
+            logger.error(`Request body must contain either 'title', 'url', or 'rating'`)
+            res
+                .status(400)
+                .json({
+                    error: { message: `Request body must contain either 'title', 'url', or 'rating'` }
+                })
+        }
+        BookmarksService.updateBookmark(
+            req.app.get('db'),
+            req.params.bookmark_id,
+            bookmarkToUpdate
+        )
+            .then(numRowsAffected => {
+                res
+                    .status(204)
+                    .end()
+            })
+            .catch(next)
+    })
 
 
 module.exports = bookmarksRouter;

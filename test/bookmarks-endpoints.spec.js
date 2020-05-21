@@ -162,7 +162,7 @@ describe('Bookmarks Endpoints', () => {
 
   describe('DELETE /bookmarks/:id', () => {
     context(`Given no bookmarks`, () => {
-      it(`responds 404 whe bookmark doesn't exist`, () => {
+      it(`responds 404 when bookmark doesn't exist`, () => {
         return supertest(app)
           .delete(`/bookmarks/123`)
           .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
@@ -174,7 +174,6 @@ describe('Bookmarks Endpoints', () => {
 
     context('Given there are bookmarks in the database', () => {
       const testBookmarks = fixtures.makeBookmarksArray()
-
       beforeEach('insert bookmarks', () => {
         return db
           .into('bookmarks')
@@ -315,4 +314,110 @@ describe('Bookmarks Endpoints', () => {
         })
     })
   })
+
+  describe('PATCH /bookmarks/:id', () => {
+    context('Given there are no bookmarks', () => {
+      it(`Responds with 404`, () => {
+        const bookmark_id = 12345;
+        return supertest(app)
+          .patch(`/bookmarks/${bookmark_id}`)
+          .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
+          .expect(404, {
+            error: {
+              message: `Bookmark Not Found`
+            }
+          })
+      })
+
+      context('Given there are bookmarks', () => {
+        const testBookmarks = fixtures.makeBookmarksArray()
+
+        beforeEach('insert bookmarks', () => {
+          return db
+            .into('bookmarks')
+            .insert(testBookmarks)
+        })
+
+
+
+
+
+
+
+
+
+        it.only('responds with 204 and updates the bookmark', () => {
+          const idToUpdate = 2
+          const updateBookmark = {
+            title: 'updated bookmark title',
+            url: 'https://updated-url.com',
+            description: 'updated bookmark description',
+            rating: 1,
+          }
+          const expectedBookmark = {
+            ...testBookmarks[idToUpdate - 1],
+            ...updateBookmark
+          }
+          return supertest(app)
+            .patch(`/bookmarks/${idToUpdate}`)
+            .send(updateBookmark)
+            .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
+            .expect(204)
+            .then(res => 
+              supertest(app)
+                .get(`/bookmarks/${idToUpdate}`)
+                .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
+                .expect(expectedBookmark)
+            )
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // it('Responds with 204 and updates the bookmark', () => {
+        //   const idToUpdate = 2
+        //   const updateBookmark = {
+        //     title: 'updated Title',
+        //     url: 'https://www.blah.com',
+        //     rating: 2,
+        //   }
+        //   const expectedBookmark = {
+        //     ...testBookmarks[idToUpdate - 1],
+        //     ...updateBookmark
+        //   }
+        //   return supertest(app)
+        //     .patch(`/bookmarks/${idToUpdate}`)
+        //     .send(updateBookmark)
+        //     .set('Authorization', `Bearer ${process.env.API_TOKEN}`)
+        //     .expect(204)
+        //     .then(res => {
+        //       supertest(app)
+        //         .get(`/bookmarks/${idToUpdate}`)
+        //         .expect(expectedBookmark)
+        //     })
+        // })
+
+
+
+
+      })
+    })
+
+
+  })
 })
+
