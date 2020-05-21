@@ -3,7 +3,6 @@ const BookmarksService = {
     return knex.select('*').from('bookmarks')
   },
   getById(knex, id) {
-    // return knex.from('bookmarks').select('*').where('id', id)
     return knex.from('bookmarks').select('*').where('id', id).first()
   },
   insertBookmark(knex, newBookmark) {

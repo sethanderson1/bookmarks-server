@@ -1,4 +1,3 @@
-  
 function makeBookmarksArray() {
   return [
     {
